@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <title>MIE Bing térkép minta 3 </title>
+      <script type="text/javascript" 
+	   src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0">
+	  </script>
+      <script type="text/javascript">
+         var map = null; 
+         var pinInfobox = null;      
+///		 
+         function Init()
+         {
+            map = new Microsoft.Maps.Map(document.getElementById("myMap"), {
+			credentials: "Artw-2oFM30u85MXt1TzrEqCt4lafpw7rDnPdcRjE_onLFq1FxFkLvlF0TGhkE-F"  //kl DEV/okt
+			}); 
+            // térkép középpont pont és pin megjelőlés poz. adatai
+            var loc = new Microsoft.Maps.Location(48.501924,15.078808);            
+            // Térkép nézet alapbeállítás
+            map.setView({center: loc, zoom: 15});            
+            // pin objektum létrehozása a térkép közelén
+            var pin = new Microsoft.Maps.Pushpin(loc, {text: 'MIE PIN 1'}); 
+            // pin  infobox beállítása
+            pinInfobox = new Microsoft.Maps.Infobox(pin.getLocation(), 
+                {title: 'Mi érdekel?', 
+                 description: 'Itt jártam nem rég', 
+                 visible: false, 
+                 offset: new Microsoft.Maps.Point(0,15)});
+            // Klikk eseménykezelő
+            Microsoft.Maps.Events.addHandler(pin, 'click', displayInfobox);
+            // infobox elrejtése térkép mozgás hatására
+            Microsoft.Maps.Events.addHandler(map, 'viewchange', hideInfobox);
+            //  map objektumra kapcsolása a pim és infobox-nak
+            map.entities.push(pin);
+            map.entities.push(pinInfobox);
+         }
+///		 
+         function displayInfobox(e)
+         {
+            pinInfobox.setOptions({ visible:true });
+         }                   
+///
+         function hideInfobox(e)
+         {
+            pinInfobox.setOptions({ visible: false });
+         }
+      </script>
+   </head>
+   <body onload="Init();">
+   <div id='myMap' style="position:relative; width:700px; height:300px;"></div>       
+   </body>
+</html>

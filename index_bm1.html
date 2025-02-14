@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <title>MIE Bing térkép minta 1 </title>
+      <script type="text/javascript" 
+	   src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0">
+	  </script>
+
+      <script type="text/javascript">
+      function Init()
+      {   
+         var mapOptions = {
+         credentials: "Artw-2oFM30u85MXt1TzrEqCt4lafpw7rDnPdcRjE_onLFq1FxFkLvlF0TGhkE-F",  //kl DEV/okt
+         center: new Microsoft.Maps.Location(47.4274747,19.2058965),
+         mapTypeId: Microsoft.Maps.MapTypeId.road,  // satellite
+         zoom: 10,
+         showScalebar: false
+         }
+
+         var map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), mapOptions);
+      }
+      </script>
+<style>
+    html, body, #mapDiv, .leaflet-container { height: 100%; margin: 0; }
+    body {
+        font-family: Arial, sans-serif;
+    }     
+</style>
+   </head>
+   <body onload="Init();">
+      <div id='mapDiv'></div>       
+   </body>
+</html>
+
